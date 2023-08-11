@@ -32,6 +32,16 @@
             android:exported="false"
             android:label="register_activity"
             android:theme="@style/Theme.ActivitiesAndViews" />
+        <activity
+            android:name=".MacroLogActivity"
+            android:exported="false"
+            android:label="MacroLogActivity"
+            android:theme="@style/Theme.ActivitiesAndViews" />
+        <activity
+            android:name=".WorkoutLogActivity"
+            android:exported="false"
+            android:label="WorkoutLogActivity"
+            android:theme="@style/Theme.ActivitiesAndViews" />
     </application>
 
 </manifest>

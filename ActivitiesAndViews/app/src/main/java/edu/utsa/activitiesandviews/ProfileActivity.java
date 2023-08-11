@@ -3,6 +3,9 @@ package edu.utsa.activitiesandviews;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.ComponentActivity;
@@ -25,6 +28,7 @@ public class ProfileActivity extends ComponentActivity {
         profileinfo = null;
         //assets = getAssets();
         setupProfile();
+        setupButtons();
     }
 
     public void setupProfile() {
@@ -50,8 +54,7 @@ public class ProfileActivity extends ComponentActivity {
                 }
                 scan.close();
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error" + e.getMessage());
         }
 
@@ -61,5 +64,22 @@ public class ProfileActivity extends ComponentActivity {
             name.setText(profileinfo.getName());
             email.setText(profileinfo.getEmail());
         }
+    }
+
+    private void setupButtons() {
+        Button caloriesbutton = (Button) findViewById(R.id.caloriesButton);
+        Button workoutbutton = (Button) findViewById(R.id.workoutButton);
+        caloriesbutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, MacroLogActivity.class);
+                startActivity(intent);
+            }
+        });
+            workoutbutton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(ProfileActivity.this, WorkoutLogActivity.class);
+                    startActivity(intent);
+                }
+        });
     }
 }

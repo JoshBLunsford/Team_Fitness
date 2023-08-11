@@ -6,42 +6,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/profilepic"
+    <TextView
+        android:id="@+id/tname2"
+        android:layout_width="245dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="48dp"
+        android:text="NOTSURE"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/NotSure"
+        app:layout_constraintTop_toBottomOf="@+id/tname"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <TextView
+        android:id="@+id/tname"
+        android:layout_width="245dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="48dp"
+        android:text="Calories"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/calories"
+        app:layout_constraintTop_toBottomOf="@+id/Tname"
+        app:layout_constraintVertical_bias="0.086" />
+
+    <TextView
+        android:id="@+id/NotSure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:src="@drawable/glep"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        android:layout_marginTop="56dp"
+        android:text="NOT SURE"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/Tname"
+        app:layout_constraintHorizontal_bias="0.866"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/calories" />
+
+    <TextView
+        android:id="@+id/calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Calories:"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/Tname"
+        app:layout_constraintHorizontal_bias="0.795"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <Button
+        android:id="@+id/workoutButton"
+        android:layout_width="137dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="48dp"
+        android:text="Log Workout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toEndOf="@+id/caloriesButton" />
 
     <TextView
         android:id="@+id/Temail"
         android:layout_width="243dp"
         android:layout_height="41dp"
-        android:layout_marginTop="104dp"
         android:text="Email"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.704"
+        app:layout_constraintHorizontal_bias="0.702"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilepic" />
+        tools:layout_editor_absoluteY="54dp" />
 
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
         android:text="Email:"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/Temail"
-        app:layout_constraintHorizontal_bias="0.793"
+        app:layout_constraintHorizontal_bias="0.811"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilepic" />
+        tools:layout_editor_absoluteY="54dp" />
 
     <TextView
         android:id="@+id/Tname"
@@ -69,4 +123,15 @@
         app:layout_constraintHorizontal_bias="0.795"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <Button
+        android:id="@+id/caloriesButton"
+        android:layout_width="137dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="48dp"
+        android:text="Log Calories"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
