@@ -20,14 +20,13 @@ public class MacroLogActivity extends ComponentActivity {
         super.onCreate(savedInstancedState);
         setContentView(R.layout.calorielog);
         //assets = getAssets();
-        setupcalorieLog();
         setupButtons();
     }
 
-    private void setupcalorieLog() {
+    private void setupcalorieLog(int calories) {
         EditText calInput = (EditText) findViewById(R.id.calInput);
         try {
-            int calories = Integer.parseInt(calInput.getText().toString());
+            /*int calories = Integer.parseInt(calInput.getText().toString());*/
 
             File f = new File(getFilesDir().getAbsolutePath() + "/calories.txt");
             OutputStreamWriter w = null;
@@ -35,7 +34,7 @@ public class MacroLogActivity extends ComponentActivity {
             if (!f.exists()) {
                 try {
                     w = new OutputStreamWriter(openFileOutput("calories.txt", MODE_PRIVATE));
-                    w.write(Integer.toString(calories));
+                    w.write(Integer.toString(calories) + ",");
                     w.close();
                 } catch (IOException e) {
                     Toast.makeText(getBaseContext(), "IOException" + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -43,7 +42,7 @@ public class MacroLogActivity extends ComponentActivity {
             } else {
                 try {
                     w = new OutputStreamWriter(openFileOutput("calories.txt", MODE_APPEND));
-                    w.append(Integer.toString(calories));
+                    w.append(Integer.toString(calories) + ",");
                     w.close();
                 } catch (IOException e) {
                     Toast.makeText(getBaseContext(), "IOException" + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -59,9 +58,12 @@ public class MacroLogActivity extends ComponentActivity {
         Button submitCal = (Button) findViewById(R.id.submitCal);
         submitCal.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int cal = 0;
                 EditText calInput = (EditText) findViewById(R.id.calInput);
+                int calories = Integer.parseInt(calInput.getText().toString());
+                setupcalorieLog(calories);
                 finish();
+                Intent intent = new Intent(MacroLogActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
         });
     }

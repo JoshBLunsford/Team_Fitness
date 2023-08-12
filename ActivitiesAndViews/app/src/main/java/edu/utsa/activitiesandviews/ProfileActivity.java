@@ -3,6 +3,7 @@ package edu.utsa.activitiesandviews;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ public class ProfileActivity extends ComponentActivity {
         calorieLog = null;
         //assets = getAssets();
         setupProfile();
+        setupCalories();
         setupButtons();
     }
 
@@ -60,7 +62,7 @@ public class ProfileActivity extends ComponentActivity {
         } catch (IOException e) {
             System.out.println("Error" + e.getMessage());
         }
-
+        Log.d("ProfileDebug","Name: " + profileinfo.getName()); // Did not work without the debugger not sure why
         if (profileinfo != null) {
             TextView name = (TextView) findViewById(R.id.Tname);
             TextView email = (TextView) findViewById(R.id.Temail);
@@ -71,7 +73,7 @@ public class ProfileActivity extends ComponentActivity {
 
     public void setupCalories() {
         Intent intent = getIntent();
-        int calories = intent.getIntExtra("calories", 0);
+        int calories = intent.getIntExtra("calories", -1);
 
         //profileinfo = new Account(id, assets);
         File f = new File(getFilesDir().getAbsolutePath() + "/calories.txt");
@@ -85,8 +87,10 @@ public class ProfileActivity extends ComponentActivity {
                 while (scan.hasNext()) {
                     str = scan.nextLine();
                     arr = str.split(",");
-                    if (arr.length > 0 && Integer.parseInt(arr[0]) == calories) {
-                        calorieLog = new Calories(Integer.parseInt(arr[0]));
+                    if (arr != null && arr.length > 0) {
+                        int lastValueIndex = arr.length - 1;
+                        int lastValue = Integer.parseInt(arr[lastValueIndex]);
+                        calorieLog = new Calories(lastValue);
                         break;
                     }
                 }
@@ -94,11 +98,14 @@ public class ProfileActivity extends ComponentActivity {
             }
         } catch (IOException e) {
             System.out.println("Error" + e.getMessage());
+        } catch (NumberFormatException e) {
+
+            System.out.println("Error parsing integer: " + e.getMessage());
         }
 
         if (calorieLog != null) {
             TextView cal = (TextView) findViewById(R.id.Tcal);
-            cal.setText(calorieLog.getCals());
+            cal.setText(String.valueOf(calorieLog.getcals()));
         }
     }
 

@@ -29,4 +29,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/workoutInput"
+        android:layout_width="192dp"
+        android:layout_height="81dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="179dp"
+        tools:layout_editor_absoluteY="195dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
