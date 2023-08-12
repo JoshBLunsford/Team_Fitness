@@ -7,24 +7,24 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tname2"
-        android:layout_width="245dp"
-        android:layout_height="40dp"
+        android:id="@+id/Tweight"
+        android:layout_width="174dp"
+        android:layout_height="39dp"
         android:layout_marginEnd="48dp"
-        android:text="NOTSURE"
+        android:text="Total Weight"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/NotSure"
-        app:layout_constraintTop_toBottomOf="@+id/tname"
+        app:layout_constraintStart_toEndOf="@+id/TotalW"
+        app:layout_constraintTop_toBottomOf="@+id/Tcal"
         app:layout_constraintVertical_bias="0.106" />
 
     <TextView
-        android:id="@+id/tname"
-        android:layout_width="245dp"
-        android:layout_height="40dp"
+        android:id="@+id/Tcal"
+        android:layout_width="142dp"
+        android:layout_height="33dp"
         android:layout_marginEnd="48dp"
         android:text="Calories"
         android:textColor="@color/black"
@@ -36,17 +36,19 @@
         app:layout_constraintVertical_bias="0.086" />
 
     <TextView
-        android:id="@+id/NotSure"
+        android:id="@+id/TotalW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="NOT SURE"
+        android:layout_marginTop="64dp"
+        android:text="Total Weight:"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/Tname"
-        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calories" />
+        app:layout_constraintTop_toBottomOf="@+id/calories"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/calories"

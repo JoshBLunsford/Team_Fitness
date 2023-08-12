@@ -15,10 +15,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import edu.utsa.activitiesandviews.ui.theme.Account;
+import edu.utsa.activitiesandviews.ui.theme.Calories;
 
 public class ProfileActivity extends ComponentActivity {
 
     private Account profileinfo;
+    private Calories calorieLog;
     //private AssetManager assets;
 
     @Override
@@ -26,6 +28,7 @@ public class ProfileActivity extends ComponentActivity {
         super.onCreate(savedInstancedState);
         setContentView(R.layout.profile);
         profileinfo = null;
+        calorieLog = null;
         //assets = getAssets();
         setupProfile();
         setupButtons();
@@ -63,6 +66,39 @@ public class ProfileActivity extends ComponentActivity {
             TextView email = (TextView) findViewById(R.id.Temail);
             name.setText(profileinfo.getName());
             email.setText(profileinfo.getEmail());
+        }
+    }
+
+    public void setupCalories() {
+        Intent intent = getIntent();
+        int calories = intent.getIntExtra("calories", 0);
+
+        //profileinfo = new Account(id, assets);
+        File f = new File(getFilesDir().getAbsolutePath() + "/calories.txt");
+        Scanner scan;
+        String str = "";
+        String[] arr = null;
+
+        try {
+            if (f.exists()) {
+                scan = new Scanner(openFileInput("calories.txt"));
+                while (scan.hasNext()) {
+                    str = scan.nextLine();
+                    arr = str.split(",");
+                    if (arr.length > 0 && Integer.parseInt(arr[0]) == calories) {
+                        calorieLog = new Calories(Integer.parseInt(arr[0]));
+                        break;
+                    }
+                }
+                scan.close();
+            }
+        } catch (IOException e) {
+            System.out.println("Error" + e.getMessage());
+        }
+
+        if (calorieLog != null) {
+            TextView cal = (TextView) findViewById(R.id.Tcal);
+            cal.setText(calorieLog.getCals());
         }
     }
 
