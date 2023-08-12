@@ -18,6 +18,7 @@ import edu.utsa.activitiesandviews.ui.theme.Account;
 public class WorkoutLogActivity extends ComponentActivity {
 
     private Account weightinfo;
+    private Workout workoutinfo;
 
     @Override
     public void onCreate(Bundle savedInstancedState) {
@@ -29,8 +30,51 @@ public class WorkoutLogActivity extends ComponentActivity {
         setupButtons();
     }
 
-    private void setupworkoutLog() {
+    private int createworkoutLog(){
+        EditText musInput = (EditText) findViewById(R.id.MusInput);
+        EditText exInput = (EditText) findViewById(R.id.ExInput);
+        String muscle = musInput.getTExt().toString();
+        String exercise = exInput.getText().toString();
 
+        File f = new File(getFilesDir().getAbsolutePath() + "/workoutlog.txt");
+        OutputStreamWriter w;
+        int id = -1;
+        Scanner scan;
+        String record = null;
+        String[] arr;
+
+        if (!f.exists()) {
+            id = 1;
+            try {
+                w = new OutputStreamWriter(openFileOutput("workoutlog.txt", MODE_PRIVATE));
+                w.write(id, muscle, exercise);
+                w.close();
+            } catch (IOException e) {
+                Toast.makeText(getBaseContent(), "IOException" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            try {
+                scan = new Scanner(openFileInput("workoutlog.txt"));
+                while (scan.hasNext()) {
+                    record = scanNextLine();
+                }
+                if (record != null) {
+                    arr = record.split(",");
+                    if (arr.length == 3) {
+                        id = Integer.parseInt(arr[0]) + 1;
+                    }
+                }
+                scan.close();
+
+                w = new OutputStreamWriter(openFileOutput("workoutlog.txt"));
+                w.append("\n" + id + "," + muscle + "," + exercise);
+                w.close();
+            } catch (IOException e) {
+                Toast.makeText(getBaseContent(), "IOException", e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        return id;
     }
 
     private void setupButtons() {

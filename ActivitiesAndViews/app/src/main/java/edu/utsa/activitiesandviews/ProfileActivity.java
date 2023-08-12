@@ -108,6 +108,38 @@ public class ProfileActivity extends ComponentActivity {
             cal.setText(String.valueOf(calorieLog.getcals()));
         }
     }
+    private void setupworkoutLog() {
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("id", -1);
+
+        File f = new File(getFilesDir().getAbsolutePath() + "/workoutlog.txt");
+        Scanner scan;
+        String record = "";
+        String[] arr = null;
+
+        try {
+            if (f.exists()) {
+                scan = new Scanner(openFileINput("workoutlog.txt"));
+                while(scan.hasNext()) {
+                    record = scan.nextLine();
+                    arr = record.split(",");
+                    if (Integer.parseInt(arr[0]) == id) {
+                        new Workout(id, arr[1], arr[2]);
+                        break;
+                    }
+                }
+                scan.close();
+            }
+        }catch (IOException e) {
+            Toast.makeText(getBaseContent(), "IOException" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        if (workoutinfo != null) {
+            EditText muscle = (EditText) findViewById(R.id.MusInput);
+            EditText exercise = (EditText) findViewById(R.id.ExInput);
+            muscle.setText(workoutinfo.getMuscle());
+            exercise.setText(workoutinfo.getExercise());
+        }
+    }
 
     private void setupButtons() {
         Button caloriesbutton = (Button) findViewById(R.id.caloriesButton);
